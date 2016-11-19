@@ -1,33 +1,33 @@
-int led = 11;           // the pin that the LED is attached to
-int brightness;
+int gauge_pin = 9;           // the pin that the gauge_pin is attached to
+int gauge_value;
 boolean sweep_direction = true;
 
 void setup()  { 
   // declare pin 9 to be an output:
-  pinMode(led, OUTPUT);
+  pinMode(gauge_pin, OUTPUT);
   Serial.begin(115200);
 } 
 
 // the loop routine runs over and over again forever:
 void loop()  { 
   if(sweep_direction == true){
-    brightness = brightness + 1;
+    gauge_value = gauge_value + 1;
   }else{
-    brightness = brightness - 1;
+    gauge_value = gauge_value - 1;
   }
   
-  if(brightness > 255){
-    brightness = 255;
+  if(gauge_value > 255){
+    gauge_value = 255;
     sweep_direction = false;
   }
-  if(brightness == 0){
-    brightness = 0;
+  if(gauge_value == 0){
+    gauge_value = 0;
     sweep_direction = true;
   }
   
-  analogWrite(led, brightness);
-  Serial.print("Brightness: ");
-  Serial.println(brightness);
-  delay(5);
+  analogWrite(gauge_pin, gauge_value);
+  Serial.print("gauge_value: ");
+  Serial.println(gauge_value);
+  delay(50);
 }
 
