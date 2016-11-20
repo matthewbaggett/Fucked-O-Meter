@@ -3,7 +3,6 @@
 #include <ArduinoJson.h>
 
 int gauge_pin = 9;           // the pin that the gauge_pin is attached to
-
 boolean sweep_direction = true;
 
 byte mac[] = { 
@@ -11,7 +10,6 @@ byte mac[] = {
 
 // initialize the library instance:
 EthernetClient client;
-
 
 const char server[] = "pharmer.thru.io";
 const char endpoint[] = "/v1/status";
@@ -52,7 +50,6 @@ void setup()  {
   pinMode(gauge_pin, OUTPUT);
   Serial.begin(115200);
   
-  
   // give the ethernet module time to boot up:
   delay(1000);
   Serial.println(F("Starting up..."));
@@ -70,7 +67,6 @@ void setup()  {
 
   testGauge();
 } 
-
 
 String readPage() {
   //read the page, and capture & return everything between '<' and '>'
@@ -153,4 +149,5 @@ void loop()  {
   // the loop:
   lastConnected = client.connected();
 }
+
 
