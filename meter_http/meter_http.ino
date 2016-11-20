@@ -90,7 +90,6 @@ String readPage() {
   return inString;
 }
 
-
 // this method makes a HTTP connection to the server:
 String httpRequest() {
   // if there's a successful connection:
