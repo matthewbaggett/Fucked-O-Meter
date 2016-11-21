@@ -15,7 +15,7 @@ const char server[] = "pharmer.thru.io";
 const char endpoint[] = "/v1/status";
 unsigned long lastConnectionTime = 0;          // last time you connected to the server, in milliseconds
 boolean lastConnected = false;                 // state of the connection last time through the main loop
-const unsigned long postingInterval = 2000;  // delay between updates, in milliseconds
+const unsigned long postingInterval = 5000;    // delay between updates, in milliseconds
 
 const int inStringLen = 350;
 char inString[inStringLen]; // string for incoming serial data
