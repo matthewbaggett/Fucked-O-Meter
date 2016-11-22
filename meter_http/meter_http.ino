@@ -22,6 +22,8 @@ char inString[inStringLen]; // string for incoming serial data
 int stringPos = 0; // string index counter
 boolean startRead = false; // is reading?
 
+double previousPercentage = 0;
+
 void hcf(){
   Serial.println("Halt and Catch Fire ordered.");
   for(;;)
@@ -43,6 +45,15 @@ void testGauge(){
     delay(333);
   }
   Serial.println(F(" > [DONE]"));
+}
+
+void payAttentionToMe(){
+  for(int i = 1; i <= 5; i++){
+    setGauge(100);
+    delay(200);
+    setGauge(0);
+    delay(200);
+  }
 }
 
 void setup()  { 
@@ -141,7 +152,11 @@ void loop()  {
     JsonObject& root = jsonBuffer.parseObject(httpResponseBody);
     double percentageStatus = root["PercentageStatus"];
     Serial.print(F("Percentage Status: ")); Serial.print(percentageStatus); Serial.println(F("%"));
-    setGauge(percentageStatus);
+    if(percentageStatus != previousPercentage){
+      payAttentionToMe();
+      setGauge(percentageStatus);
+      previousPercentage = percentageStatus;
+    }
     
   }
   // store the state of the connection for next time through
